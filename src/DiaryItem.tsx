@@ -25,8 +25,6 @@ const DiaryItem = ({ item, onRemove, onEdit }: ItemProps) => {
   };
 
   const handleEdit = (id: number, content: string) => {
-    console.log(content);
-
     if (content.length < 5) {
       localContentRef.current?.focus();
       return;
