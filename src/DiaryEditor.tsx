@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 
-const DiaryEditor = () => {
+interface EditorProps {
+  onCreate: (author: string, content: string, emotion: number) => void;
+}
 
+const DiaryEditor = ({ onCreate }: EditorProps) => {
   const authorInput = useRef<HTMLInputElement>(null);
-  const contentInput= useRef<HTMLTextAreaElement>(null)
+  const contentInput = useRef<HTMLTextAreaElement>(null);
 
   const [state, setState] = useState({
     author: "",
@@ -33,13 +36,18 @@ const DiaryEditor = () => {
       return;
     }
 
-    console.log(state);
+    onCreate(state.author, state.content, state.emotion);
     alert("save!");
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (
     <div className="DiaryEditor">
-      <h2>Simple diary 😏</h2>
+      <h1>Simple diary 😏</h1>
       <div>
         <input
           ref={authorInput}
@@ -57,7 +65,7 @@ const DiaryEditor = () => {
         />
       </div>
       <div>
-        오늘의 기분 점수 &nbsp;
+        score &nbsp;
         <select
           name="emotion"
           value={state.emotion}
@@ -71,7 +79,7 @@ const DiaryEditor = () => {
         </select>
       </div>
       <div>
-        <button onClick={handleSubmit}>저장</button>
+        <button onClick={handleSubmit}>SAVE</button>
       </div>
     </div>
   );
