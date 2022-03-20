@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ListType } from "./DiaryList";
 
 interface ItemProps {
@@ -74,4 +74,4 @@ const DiaryItem = ({ item, onRemove, onEdit }: ItemProps) => {
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
